@@ -44,5 +44,3 @@ do
 done
 
 echo "Canary deployment of v2 successful"
-
-

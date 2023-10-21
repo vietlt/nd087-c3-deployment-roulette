@@ -1,0 +1,34 @@
+Viet@DESKTOP-38U82EA MINGW64 /c/Udacity/nd087-c3-deployment-roulette (master)
+$ kubectl get pods
+NAME                                  READY   STATUS    RESTARTS   AGE
+bloaty-mcbloatface-55c7c56c54-4wr4f   1/1     Running   0          14s
+bloaty-mcbloatface-55c7c56c54-5xbtb   1/1     Running   0          14s
+bloaty-mcbloatface-55c7c56c54-8bkfn   1/1     Running   0          14s
+bloaty-mcbloatface-55c7c56c54-cw9hd   1/1     Running   0          14s
+bloaty-mcbloatface-55c7c56c54-cwkv5   1/1     Running   0          14s
+bloaty-mcbloatface-55c7c56c54-dp787   1/1     Running   0          14s
+bloaty-mcbloatface-55c7c56c54-dvbst   1/1     Running   0          14s
+bloaty-mcbloatface-55c7c56c54-hp4j6   1/1     Running   0          14s
+bloaty-mcbloatface-55c7c56c54-hpzd7   1/1     Running   0          14s
+bloaty-mcbloatface-55c7c56c54-hwkx8   1/1     Running   0          14s
+bloaty-mcbloatface-55c7c56c54-jsskf   1/1     Running   0          14s
+bloaty-mcbloatface-55c7c56c54-jtgds   1/1     Running   0          14s
+bloaty-mcbloatface-55c7c56c54-n4rtk   1/1     Running   0          14s
+bloaty-mcbloatface-55c7c56c54-nswpd   1/1     Running   0          14s
+bloaty-mcbloatface-55c7c56c54-r6x54   1/1     Running   0          14s
+bloaty-mcbloatface-55c7c56c54-sr2k9   1/1     Running   0          14s
+bloaty-mcbloatface-55c7c56c54-tnj4g   1/1     Running   0          14s
+blue-5b8f867b7-59vcg                  1/1     Running   0          39m
+blue-5b8f867b7-fr8kd                  1/1     Running   0          39m
+blue-5b8f867b7-j4nkk                  1/1     Running   0          39m
+canary-v1-78fd9f7474-9zmbv            1/1     Running   0          39m
+canary-v1-78fd9f7474-rgnfk            1/1     Running   0          39m
+canary-v1-78fd9f7474-tkbh9            1/1     Running   0          39m
+canary-v1-78fd9f7474-tt2xs            1/1     Running   0          39m
+green-7d8b79f869-jmjjn                1/1     Running   0          39m
+green-7d8b79f869-vgdbk                1/1     Running   0          39m
+green-7d8b79f869-z7kw5                1/1     Running   0          39m
+hello-world-54d864dd68-rh9zt          1/1     Running   0          39m
+
+Viet@DESKTOP-38U82EA MINGW64 /c/Udacity/nd087-c3-deployment-roulette (master)
+$

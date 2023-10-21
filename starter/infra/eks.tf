@@ -23,6 +23,7 @@ module "project_eks" {
   nodes_max_size     = 4
   nodes_min_size     = 1
 
+
   depends_on = [
     module.vpc,
   ]

@@ -1,0 +1,46 @@
+## Enable Autoscaler
+
+Viet@DESKTOP-38U82EA MINGW64 /c/Udacity/nd087-c3-deployment-roulette (master)
+$ eksctl utils associate-iam-oidc-provider --cluster udacity-cluster --approve --region=us-east-2
+2023-10-21 03:23:26 [ℹ]  will create IAM Open ID Connect provider for cluster "udacity-cluster" in "us-east-2"
+2023-10-21 03:23:28 [✔]  created IAM Open ID Connect provider for cluster "udacity-cluster" in "us-east-2"
+
+Viet@DESKTOP-38U82EA MINGW64 /c/Udacity/nd087-c3-deployment-roulette (master)
+$ eksctl create iamserviceaccount --name cluster-autoscaler --namespace kube-system --cluster udacity-cluster --attach-policy-arn "arn:aws:iam::817735295857:policy/udacity-k8s-autoscale" --approve --override-existing-serviceaccounts --region=us-east-2
+2023-10-21 03:25:04 [ℹ]  1 iamserviceaccount (kube-system/cluster-autoscaler) was included (based on the include/exclude rules)
+2023-10-21 03:25:04 [!]  metadata of serviceaccounts that exist in Kubernetes will be updated, as --override-existing-serviceaccounts was set
+2023-10-21 03:25:04 [ℹ]  1 task: {
+    2 sequential sub-tasks: {
+        create IAM role for serviceaccount "kube-system/cluster-autoscaler",
+        create serviceaccount "kube-system/cluster-autoscaler",
+    } }2023-10-21 03:25:04 [ℹ]  building iamserviceaccount stack "eksctl-udacity-cluster-addon-iamserviceaccount-kube-system-cluster-autoscaler"
+2023-10-21 03:25:05 [ℹ]  deploying stack "eksctl-udacity-cluster-addon-iamserviceaccount-kube-system-cluster-autoscaler"
+2023-10-21 03:25:05 [ℹ]  waiting for CloudFormation stack "eksctl-udacity-cluster-addon-iamserviceaccount-kube-system-cluster-autoscaler"
+2023-10-21 03:25:37 [ℹ]  waiting for CloudFormation stack "eksctl-udacity-cluster-addon-iamserviceaccount-kube-system-cluster-autoscaler"
+2023-10-21 03:25:40 [ℹ]  created serviceaccount "kube-system/cluster-autoscaler"
+
+
+## Increase eks nodes_max_size in module eks in eks.tf then redeploy infra
+
+module "project_eks" {
+  source             = "./modules/eks"
+  name               = local.name
+  account            = data.aws_caller_identity.current.account_id
+  private_subnet_ids = module.vpc.private_subnet_ids
+  vpc_id             = module.vpc.vpc_id
+  nodes_desired_size = 2
+  nodes_max_size     = 4
+  nodes_min_size     = 1
+
+
+  depends_on = [
+    module.vpc,
+  ]
+}
+
+
+## Redeploy bloatware.yml
+
+Viet@DESKTOP-38U82EA MINGW64 /c/Udacity/nd087-c3-deployment-roulette (master)
+$ kubectl apply -f starter/apps/bloatware/bloatware.yml
+deployment.apps/bloaty-mcbloatface created

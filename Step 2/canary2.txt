@@ -1,0 +1,11 @@
+PS C:\Udacity\nd087-c3-deployment-roulette> kubectl get pods
+NAME                           READY   STATUS    RESTARTS   AGE  
+blue-5b8f867b7-ds7lq           1/1     Running   0          3h30m
+blue-5b8f867b7-phzcr           1/1     Running   0          3h30m
+blue-5b8f867b7-zb872           1/1     Running   0          3h30m
+canary-v1-78fd9f7474-6w6lp     1/1     Running   0          15m  
+canary-v1-78fd9f7474-8hb8r     1/1     Running   0          15m  
+canary-v2-f66b6c74b-mc6ld      1/1     Running   0          9m3s 
+canary-v2-f66b6c74b-src4f      1/1     Running   0          8m19s
+hello-world-54d864dd68-6mwss   1/1     Running   0          3h24m
+PS C:\Udacity\nd087-c3-deployment-roulette>
