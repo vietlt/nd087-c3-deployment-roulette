@@ -1,0 +1,68 @@
+viendq@VienDQ-PC:~$ kubectl get pods
+NAME                           READY   STATUS    RESTARTS   AGE
+blue-5b8f867b7-654z2           1/1     Running   0          19m
+blue-5b8f867b7-hsdp5           1/1     Running   0          21m
+blue-5b8f867b7-rgx5z           1/1     Running   0          21m
+canary-v1-78fd9f7474-886cq     1/1     Running   0          18m
+canary-v1-78fd9f7474-pl7g9     1/1     Running   0          19m
+canary-v2-f66b6c74b-w5whs      1/1     Running   0          66s
+canary-v2-f66b6c74b-whzfj      1/1     Running   0          2m5s
+hello-world-54d864dd68-tvr9l   1/1     Running   0          19m
+viendq@VienDQ-PC:~$ kubectl get deployments.apps
+NAME          READY   UP-TO-DATE   AVAILABLE   AGE
+blue          3/3     3            3           112m
+canary-v1     2/2     2            2           112m
+canary-v2     2/2     2            2           17m
+hello-world   1/1     1            1           112m
+viendq@VienDQ-PC:~$ kubectl get svc
+NAME          TYPE           CLUSTER-IP       EXTERNAL-IP                                                                     PORT(S)        AGE
+blue-svc      LoadBalancer   172.20.225.143   a92f4377643a84a7c81f9b696ac7c2e9-14ad88305348dd1b.elb.us-east-2.amazonaws.com   80:31142/TCP   116m
+canary-svc    ClusterIP      172.20.181.245   <none>                                                                          80/TCP         17m
+hello-world   LoadBalancer   172.20.131.172   ac5cd82d882a9442baa2ce6dc7339077-20a321a0876d45cb.elb.us-east-2.amazonaws.com   80:31469/TCP   112m
+viendq@VienDQ-PC:~$ kubectl run debug --rm -i --tty --image nicolaka/netshoot -- /bin/bash
+If you don't see a command prompt, try pressing enter.
+debug:~# curl 172.20.181.245
+<html>
+<h1>This is version 1</h1>
+</html>
+debug:~# curl 172.20.181.245
+<html>
+<h1>This is version 2</h1>
+</html>
+debug:~# curl 172.20.181.245
+<html>
+<h1>This is version 1</h1>
+</html>
+debug:~# curl 172.20.181.245
+<html>
+<h1>This is version 2</h1>
+</html>
+debug:~# curl 172.20.181.245
+<html>
+<h1>This is version 1</h1>
+</html>
+debug:~# curl 172.20.181.245
+<html>
+<h1>This is version 2</h1>
+</html>
+debug:~# curl 172.20.181.245
+<html>
+<h1>This is version 2</h1>
+</html>
+debug:~# curl 172.20.181.245
+<html>
+<h1>This is version 1</h1>
+</html>
+debug:~# curl 172.20.181.245
+<html>
+<h1>This is version 2</h1>
+</html>
+debug:~# curl 172.20.181.245
+<html>
+<h1>This is version 2</h1>
+</html>
+debug:~# exit
+exit
+Session ended, resume using 'kubectl attach debug -c debug -i -t' command when the pod is running
+pod "debug" deleted
+viendq@VienDQ-PC:~$
