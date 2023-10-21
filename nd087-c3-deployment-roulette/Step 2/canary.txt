@@ -1,0 +1,58 @@
+PS C:\Udacity\nd087-c3-deployment-roulette> kubectl get pod 
+NAME                           READY   STATUS    RESTARTS   AGE
+blue-5b8f867b7-ds7lq           1/1     Running   0          3h22m
+blue-5b8f867b7-phzcr           1/1     Running   0          3h22m
+blue-5b8f867b7-zb872           1/1     Running   0          3h22m
+canary-v1-78fd9f7474-6w6lp     1/1     Running   0          7m4s
+canary-v1-78fd9f7474-8hb8r     1/1     Running   0          7m4s
+canary-v2-f66b6c74b-mc6ld      1/1     Running   0          58s
+canary-v2-f66b6c74b-src4f      1/1     Running   0          14s
+hello-world-54d864dd68-6mwss   1/1     Running   0          3h16m
+PS C:\Udacity\nd087-c3-deployment-roulette> kubectl get svc
+NAME          TYPE           CLUSTER-IP       EXTERNAL-IP                                                                     PORT(S)        AGE
+blue-svc      LoadBalancer   172.20.211.217   ac6fd2048f8b04b8ebc3175ec52638ef-6f955bb895232083.elb.us-east-2.amazonaws.com   80:32053/TCP   3h29m        
+canary-svc    ClusterIP      172.20.31.198    <none>                                                                          80/TCP         11m
+hello-world   LoadBalancer   172.20.141.235   affbf0abddbf048829dd8c10df7b593c-53e30c30aaf7c334.elb.us-east-2.amazonaws.com   80:31030/TCP   3h24m 
+PS C:\Udacity\nd087-c3-deployment-roulette> kubectl run debug --rm -i --tty --image nicolaka/netshoot -- /bin/bash
+If you don't see a command prompt, try pressing enter.
+debug:~# curl 172.20.31.198
+<html>
+<h1>This is version 2</h1>
+</html>
+debug:~# curl 172.20.31.198
+<html>
+<h1>This is version 1</h1>
+</html>
+debug:~# curl 172.20.31.198
+<html>
+<h1>This is version 2</h1>
+</html>
+debug:~# curl 172.20.31.198
+<html>
+<h1>This is version 1</h1>
+</html>
+debug:~# curl 172.20.31.198
+<html>
+<h1>This is version 1</h1>
+</html>
+debug:~# curl 172.20.31.198
+<html>
+<h1>This is version 2</h1>
+</html>
+debug:~# curl 172.20.31.198
+<html>
+<h1>This is version 1</h1>
+</html>
+debug:~# curl 172.20.31.198
+<html>
+<h1>This is version 1</h1>
+</html>
+debug:~# curl 172.20.31.198
+<html>
+<h1>This is version 1</h1>
+</html>
+debug:~# curl 172.20.31.198
+<html>
+<h1>This is version 1</h1>
+</html>
+debug:~#
